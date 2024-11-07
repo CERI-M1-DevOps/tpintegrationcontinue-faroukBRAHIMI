@@ -250,4 +250,56 @@ class ListeSimpleTest {
         System.out.println(listeATester);
         assertEquals("ListeSimple(Noeud(1), Noeud(5))", listeATester.toString());
     }
+
+//    added tests
+@Test
+void testModifiePremierAucunChangement() {
+    // Adding nodes without any target value to modify
+    listeATester.ajout(5);
+    listeATester.ajout(6);
+    listeATester.modifiePremier(7, 9);
+    assertEquals("ListeSimple(Noeud(6), Noeud(5))", listeATester.toString());
+}
+
+    @Test
+    void testModifieTousAucunChangement() {
+        // Adding nodes without any target value to modify
+        listeATester.ajout(3);
+        listeATester.ajout(6);
+        listeATester.ajout(8);
+        listeATester.modifieTous(7, 9);
+        assertEquals("ListeSimple(Noeud(8), Noeud(6), Noeud(3))", listeATester.toString());
+    }
+
+    @Test
+    void testSupprimePremierAbsent() {
+        // Attempting to remove a node value that doesn't exist in the list
+        listeATester.ajout(2);
+        listeATester.ajout(4);
+        listeATester.supprimePremier(3);
+        assertEquals("ListeSimple(Noeud(4), Noeud(2))", listeATester.toString());
+    }
+
+    @Test
+    void testSupprimeTousAbsent() {
+        // Attempting to remove all instances of a value that doesn't exist
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.supprimeTous(4);
+        assertEquals("ListeSimple(Noeud(3), Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
+
+
+    @Test
+    void testEchangerMemeNoeud() {
+        // Exchanging the same node should not alter the list
+        listeATester.ajout(1);
+        listeATester.ajout(2);
+        listeATester.ajout(3);
+        listeATester.echanger(listeATester.tete, listeATester.tete);
+        assertEquals("ListeSimple(Noeud(3), Noeud(2), Noeud(1))", listeATester.toString());
+    }
+
 }
